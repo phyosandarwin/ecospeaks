@@ -167,10 +167,7 @@ if prompt:
         summaries = st.session_state.get("summaries", "")
         questions = st.session_state.get("questions", "")
         user_answers = prompt.lower().split("answers: ")[1].strip().split(", ")
-        if not user_answers:
-            response = "You didn't provide any answers."
-        else:
-            response = evaluate_answers(user_answers, summaries, questions)
+        response = evaluate_answers(user_answers, summaries, questions)
 
     else:
         # Check if the user's input is related to the environmental topic
