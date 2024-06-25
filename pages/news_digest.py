@@ -168,7 +168,8 @@ if prompt:
         user_answers = prompt.lower().split("answers: ")[1].strip().split(", ")
         if user_answers is None:
             response = "Sorry, I cannot see your answers"
-        response = evaluate_answers(user_answers, summaries, questions)
+        else:
+            response = evaluate_answers(user_answers, summaries, questions)
 
     else:
         # Check if the user's input is related to the environmental topic
