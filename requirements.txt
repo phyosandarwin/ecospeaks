@@ -1,0 +1,7 @@
+openai==1.35.3
+pandas==2.2.2
+Plost==0.2.5
+Requests==2.32.3
+st_pages==0.4.5
+streamlit==1.35.0
+streamlit_option_menu==0.3.6
