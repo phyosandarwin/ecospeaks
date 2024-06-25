@@ -40,6 +40,6 @@ with center_col:
 
     # Tab 2: YouTube Demo
     with tabs[1]:
-        VIDEO_URL = "https://www.youtube.com/watch?v=pyWqw5yCNdo"
+        VIDEO_URL = "https://youtu.be/v0YE9YDY5ts"
         st.video(data=VIDEO_URL)
         
