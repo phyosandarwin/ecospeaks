@@ -13,7 +13,7 @@ azure_version = st.secrets['azure']['AZURE_OPENAI_API_VERSION']
 newsapi_key = st.secrets['newsapi']['API_KEY']
 
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4"
+    st.session_state["openai_model"] = "gpt-35-turbo"
 
 # Initialize session state keys
 if "messages" not in st.session_state:
@@ -55,21 +55,13 @@ Follow these steps to engage the user:
     }
 
 4. Evaluate Answers: 
-   Check the user's answers to the three questions based on the summaries provided. Explain any incorrect responses with reasoning from the information in the summaries.
-   - **Only include the explanation if the user's answer is incorrect.**
-   - Use linebreaks according to this template:
-   {
-        Question 1: <question>\n
-        Your Answer: <user's answer>\n
-        Evaluation: <Correct or Incorrect>\n
-        Explanation: [Correct answer + Summary Information to explain the correct answer]\n
-   }
+- Check the user's answers using the summaries and explain any incorrect responses with clear reasoning.
 
 Important Note: At any point in the conversation, if the user brings up a non-environmental topic, politely refuse and suggest they provide a relevant environmental keyword.
 """
 
 st.header('Enviro-News Digest', divider='rainbow')
-st.caption('Summarising the latest environmental news with your provided keyword. Summary Quizzes can also be prepared :)')
+st.caption('Key in your environmental topic keyword. Read the summaries. Ask the chatbot to generate questions. Give your answers and view the returned feedback!')
 with st.sidebar:
     st.header("About NewsDigest Chatbot")
     st.write("Model: GPT-4-Turbo")
@@ -141,7 +133,7 @@ def check_if_environmental_topic(text):
     return completion.choices[0].message.content.strip().lower() == "yes"
 
 def evaluate_answers(user_answers, summaries, questions):
-    reasoning_prompt = f"You MUST do this: For **each** answer in {user_answers} to **each** question in {questions}, use the {summaries} to explicitly state if the user answer is correct or not.\
+    reasoning_prompt = f"Use the {summaries} to evaluate the {user_answers} to each of the question in {questions}. Explicitly state if the user answer is correct or not.\
                         If the user's answer is wrong, then explain what should be the correct answer. If user's answer is correct, congratulate the user."
     completion = client.chat.completions.create(
                 model=st.session_state["openai_model"],
@@ -162,7 +154,7 @@ if prompt:
         st.markdown(prompt)
 
     # Check for keywords to generate quiz questions
-    if "generate" in prompt.lower() and "questions" in prompt.lower():
+    if "questions" in prompt.lower():
         summaries = st.session_state.get("summaries", "")
         if summaries:
             questions = generate_quiz_questions(summaries)
