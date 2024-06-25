@@ -166,8 +166,8 @@ if prompt:
         summaries = st.session_state.get("summaries", "")
         questions = st.session_state.get("questions", "")
         user_answers = prompt.lower().split("answers: ")[1].strip().split(", ")
-        if user_answers is None:
-            response = "Sorry, I cannot see your answers"
+        if not user_answers:
+            response = "You didn't provide any answers."
         else:
             response = evaluate_answers(user_answers, summaries, questions)
 
