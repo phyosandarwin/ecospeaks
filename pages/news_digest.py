@@ -132,7 +132,7 @@ def check_if_environmental_topic(text):
     return completion.choices[0].message.content.strip().lower() == "yes"
 
 def evaluate_answers(user_answers, summaries, questions):
-    reasoning_prompt = f"You MUST do this: For **each** answer in {user_answers} to **each** question in {questions}, use the {summaries} to evaluate the answer. Explicitly state if the user answer is correct or not.\
+    reasoning_prompt = f"You MUST do this: For **each** answer in {user_answers} to **each** question in {questions}, use the {summaries} to explicitly state if the user answer is correct or not.\
                         If the user's answer is wrong, then explain what should be the correct answer. If user's answer is correct, congratulate the user."
     completion = client.chat.completions.create(
                 model=st.session_state["openai_model"],
@@ -166,6 +166,8 @@ if prompt:
         summaries = st.session_state.get("summaries", "")
         questions = st.session_state.get("questions", "")
         user_answers = prompt.lower().split("answers: ")[1].strip().split(", ")
+        if user_answers is None:
+            response = "Sorry, I cannot see your answers"
         response = evaluate_answers(user_answers, summaries, questions)
 
     else:
