@@ -13,7 +13,7 @@ azure_version = st.secrets['azure']['AZURE_OPENAI_API_VERSION']
 newsapi_key = st.secrets['newsapi']['API_KEY']
 
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-35-turbo"
+    st.session_state["openai_model"] = "gpt-4"
 
 # Initialize session state keys
 if "messages" not in st.session_state:
