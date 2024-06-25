@@ -175,7 +175,7 @@ if prompt:
         summaries = st.session_state.get("summaries", "")
         questions = st.session_state.get("questions", "")
         if "answers: " in prompt.lower():
-            user_answers = prompt.lower().split("answers: ")[1].strip().split(", ")
+            user_answers = prompt.lower().split("answers:")[1].strip().split(", ")
             if not user_answers:
                 response = "You didn't provide any answers."
             else:
