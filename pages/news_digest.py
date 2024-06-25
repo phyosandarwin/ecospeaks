@@ -64,7 +64,7 @@ st.header('Enviro-News Digest', divider='rainbow')
 st.caption('Key in your environmental topic keyword. Read the summaries. Ask the chatbot to generate questions. Give your answers and view the returned feedback!')
 with st.sidebar:
     st.header("About NewsDigest Chatbot")
-    st.subheader("Model: GPT-3.5-Turbo")
+    st.subheader("Model: GPT-4")
     st.button("➕ New Chat", on_click=lambda: st.session_state.clear())
     with st.expander("System Prompt"):
         st.write(system_prompt)
