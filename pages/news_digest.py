@@ -174,7 +174,7 @@ if prompt:
     elif "evaluate" in prompt.lower() or "answers" in prompt.lower():
         summaries = st.session_state.get("summaries", "")
         questions = st.session_state.get("questions", "")
-        if "answers: " in prompt.lower():
+        if "answers:" in prompt.lower():
             user_answers = prompt.lower().split("answers:")[1].strip().split(", ")
             if not user_answers:
                 response = "You didn't provide any answers."
