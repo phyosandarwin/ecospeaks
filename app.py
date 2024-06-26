@@ -13,11 +13,11 @@ show_pages(
 )
 st.columns([2,3,1])[1].title('EcoSpeaks.ai')
 aboutText = "EcoSpeak is an Azure OpenAI-powered web application to educate individuals on sustainability issues and guide them to reach their personalized sustainable goals."
-st.columns([0.5,3,0.5])[1].info(aboutText, icon="🌿")
+st.columns([0.5,3,0.5])[1].success(aboutText, icon="🌿")
 
 
 # Creating an empty row with three columns to center-align the tabs
-_, center_col, _ = st.columns([0.2, 3, 0.5])
+_, center_col, _ = st.columns([0.2, 3, 0.3])
 
 tabList = ["Navigate App Features", "YouTube Demo"]
 with center_col:
